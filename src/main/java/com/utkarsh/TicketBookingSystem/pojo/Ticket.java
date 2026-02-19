@@ -1,9 +1,6 @@
 package com.utkarsh.TicketBookingSystem.pojo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,6 +8,12 @@ import lombok.Data;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ticketId;
-    private int price;
+    private Long ticketId;
+    private double price;
+    @ManyToOne
+    @JoinColumn(name = "seat_id")
+    private Seat seat;
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
 }
